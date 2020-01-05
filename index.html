@@ -1,0 +1,94 @@
+<html>
+	<head>
+		<title>WebCSVGenerator</title>
+		<script src="./external/zip.js"></script>
+		<script src="./external/codemirror/codemirror.js"></script>
+		<link href="./external/codemirror/codemirror.css" rel="stylesheet" />
+		<script src="./WebCSVGenerator.js"></script>
+		<link href="./WebCSVGenerator.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div class="csv-container">
+			<div class="csv-templates">
+				<div class="csv-box-title">Your CSV templates</div>
+				<div class="csv-box-content">
+					<div>
+						<div id="list-templates"></div>
+					</div>
+				</div>
+			</div>
+			<h1>Web CSV generator</h1>
+			<div class="csv-center">
+				<input type="button" class="csv-button" id="csv-template-copy" value="Copy"  />
+				<input type="button" class="csv-button" id="csv-template-save" value="Save"  />
+				<input type="button" class="csv-button csv-button-generate" id="generate" value="Generate"  />
+			</div>
+			<div class="csv-editor-msg">
+				<div id="editor-valid" style="display:none;" class="csv-valid"></div>
+				<div id="editor-error" style="display:none;" class="csv-error"></div>
+			</div>
+			<div>
+				CSV template name: <input id="csv-template-name" value="My CSV template" />
+				<div class="columns">
+					<div class="csv-field">
+						<div class="csv-field-data csv-field-button">
+							<label class="csv-fieldColumn"></label>
+						</div>
+						<div class="csv-field-data csv-field-name">
+							<label class="csv-fieldColumn">Field name</label>
+						</div>
+						<div class="csv-field-data csv-field-type">
+							<label class="csv-fieldColumn">Data type</label>
+						</div>
+						<div class="csv-field-data">
+							<label class="csv-fieldColumn">Setting</label>
+						</div>								
+					</div>
+				</div>
+				<div id="columns" class="columns"></div>
+				<hr/><br/><div class="csv-center">
+					<input type="button" class="csv-button" id="addColumn" value="Add field"  />
+				</div>
+				<br/>
+				<div class="csv-center" style="clear:both">
+					<label class="csv-span"># Rows per CSV Files: </label> 
+					<input type="number" class="csv-span csv-select" id="numberOfRow" value="1000" />
+					<label class="csv-span"># CSV Files: </label> 
+					<input type="number" class="csv-span csv-select" id="numberOfFile" value="5" />
+					<label class="csv-span">Filename</label>
+					<input type="text" class="csv-span csv-select" id="filename" value="myCSVFile{{index()}}.csv" />
+					<br/><br/>
+					<label class="csv-span">Delimiter</label> 
+					<select class="csv-span csv-select" id="separatorRow"><option value=",">Comma</option><option value="	">Tab</option><option value=";">Semicolon</option><option value="|" >Pipe</option></select>
+					<label class="csv-span">Quote</label> 
+					<select class="csv-span csv-select" id="quoteRow"><option value='"'>Double quote</option><option value="'">Quote</option></select>
+					<label class="csv-span">Escape</label> 
+					<select class="csv-span csv-select" id="escapeRow"><option value='"'>Double quote</option><option value="'">Quote</option><option value="\">Backslash</option></select>
+					<label class="csv-span">End line</label> 
+					<select class="csv-span csv-select" id="endLine"><option value="\n">\n</option><option value="\r\n">\r\n</option></select>
+					<br/><br/>
+					<label class="csv-span">Include header</label> 
+					<select class="csv-span csv-select" id="headerCSV"><option value='yes'>Yes</option><option value="no">No</option></select>
+				</div>					
+			</div>
+			<br/>
+			<br/>
+			<div id="container-result-first" class="csv-column-double csv-span">
+				<div class="csv-center"><span class="csv-title">First CSV file generated</span></div>
+				<br/>
+				<input type="button" class="csv-button" value="Download"  id="download" />
+				<input type="button" class="csv-button" value="Copy to clipboard"  id="copy"/>	
+				<br/>
+				<br/><div class="row-container csv-editor-container" style="clear:both;">
+					<textarea id="editor-container-result" class="editor"></textarea>
+				</div>
+			</div>
+			<div id="container-result" class="csv-column-double csv-span" style="display:none;">
+				<div class="csv-center"><span class="csv-title">All CSV file generated</span></div>
+				<br/>
+				<div id="container-result-files" class="csv-container-result" style="display:none;">
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
